@@ -5,7 +5,7 @@ import "./App.css";
 
 function App() {
   return (
-    <Container className="my-4">
+    <Container className="my-5">
       <h1 className="mb-4">Github Jobs</h1>
       <SearchForm />
     </Container>
