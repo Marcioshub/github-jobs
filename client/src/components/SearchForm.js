@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form, Row, Col, Button } from "react-bootstrap";
+import { Form, Row, Col, Button, Spinner } from "react-bootstrap";
 import usa from "../us_states/usa.json";
 import useFetchJobs from "./useFetchJobs";
 import Job from "./Job";
@@ -10,7 +10,7 @@ export default function SearchForm() {
   const [description, setDescription] = useState("");
   const [fulltime, setFulltime] = useState(false);
   const [location, setLocation] = useState("");
-  const { jobs, empty, getJobs } = useFetchJobs();
+  const { jobs, empty, loading, getJobs } = useFetchJobs();
 
   useEffect(() => {
     setStates(usa);
@@ -63,8 +63,21 @@ export default function SearchForm() {
           </Col>
         </Row>
         <Row>
-          <Job jobs={jobs} />
-          {empty ? <NoJobs /> : null}
+          {loading ? (
+            <Spinner
+              animation="border"
+              variant="primary"
+              className="mt-5 mx-auto"
+              style={{ width: 200, height: 200 }}
+            />
+          ) : (
+            <>
+              {jobs.map((job) => (
+                <Job job={job} />
+              ))}
+              {empty ? <NoJobs /> : null}
+            </>
+          )}
         </Row>
       </Form>
     </div>

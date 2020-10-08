@@ -1,6 +1,8 @@
 import express from "express";
 import axios from "axios";
 import path from "path";
+import dotenv from "dotenv";
+dotenv.config();
 const __dirname = path.resolve();
 
 const app = express();
@@ -29,4 +31,6 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "/client/build", "index.html"));
 });
 
-app.listen(5000, () => console.log("Server listening on port 5000"));
+app.listen(process.env.PORT, () =>
+  console.log(`Server listening on port ${process.env.PORT}`)
+);
