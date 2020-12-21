@@ -1,9 +1,9 @@
-import express from "express";
-import axios from "axios";
-import path from "path";
-import dotenv from "dotenv";
+const express = require("express");
+const axios = require("axios");
+const path = require("path");
+const dotenv = require("dotenv");
 dotenv.config();
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
 
 const app = express();
 app.use(express.json());
